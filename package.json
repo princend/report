@@ -23,7 +23,6 @@
     "start": "npm run build:live",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./app.ts ",
     "build": "tsc ./app.ts && node ./app.js",
-
     "dev": "ts-node ./app.ts"
   },
   "keywords": [],

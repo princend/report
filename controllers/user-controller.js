@@ -1,22 +1,21 @@
 "use strict";
 exports.__esModule = true;
+var user_model_1 = require("../model/user.model");
 var UserController = /** @class */ (function () {
     function UserController() {
+        this.userModel = new user_model_1["default"]();
     }
+    /**
+     *
+     */
     //取得商品
     UserController.prototype.getMerchandise = function (req, res) {
-        // console.log(req,'參數')
-        // let param = JSON.parse(req.query)
         var param = req.query;
-        console.log(req.query.id, 'cc~~~', typeof (req.query.id));
-        if (param.id === '1') {
-            res.send('商品一');
-        }
-        else if (param.id === '2') {
-            res.send('商品二');
+        if (+param.id <= 1000) {
+            res.send("\u5546\u54C1" + param.id);
         }
         else {
-            res.send("\u5546\u54C1" + param.id);
+            res.send("\u67E5\u7121\u5546\u54C1");
         }
     };
     return UserController;
