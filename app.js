@@ -1,11 +1,12 @@
 "use strict";
 exports.__esModule = true;
+var router_1 = require("./router");
+var database_1 = require("./database");
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var router_1 = require("./router");
 var app = express();
 var port = '3000';
 // view engine setup
@@ -41,5 +42,11 @@ app.use(function (err, req, res, next) {
 });
 app.listen(port, function () {
     console.log("app listent on port " + port);
+    //資料庫連結
+    database_1.ref.get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            console.log(doc.id, doc.data());
+        });
+    });
 });
 module.exports = app;
