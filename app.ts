@@ -1,5 +1,5 @@
 import { router } from "./router";
-import { ref } from "./database";
+import { ref, DataBase } from "./database";
 const createError = require('http-errors');
 var express = require('express');
 const path = require('path');
@@ -50,11 +50,10 @@ app.listen(port, () => {
     console.log(`app listent on port ${port}`);
 
     //資料庫連結
-    ref.get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-            console.log(doc.id, doc.data());
-        });
-    });
+
+
+    let database = new DataBase();
+    database.get('dbconnect')
 
 })
 

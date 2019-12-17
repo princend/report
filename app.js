@@ -43,10 +43,7 @@ app.use(function (err, req, res, next) {
 app.listen(port, function () {
     console.log("app listent on port " + port);
     //資料庫連結
-    database_1.ref.get().then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-            console.log(doc.id, doc.data());
-        });
-    });
+    var database = new database_1.DataBase();
+    database.get('dbconnect');
 });
 module.exports = app;
