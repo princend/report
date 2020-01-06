@@ -46,15 +46,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, () => {
-
     console.log(`app listent on port ${port}`);
-
-    //資料庫連結
-
-
-    let database = new DataBase();
-    database.get('dbconnect')
-
 })
 
 module.exports = app;

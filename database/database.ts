@@ -11,24 +11,30 @@ export const ref = db.collection('user');
 export class DataBase {
 
     get(params) {
-
-        ref.get().then(querySnapshot => {
+        return ref.get().then(querySnapshot => {
+            let result: Array<any> = [];
             querySnapshot.forEach(doc => {
-                console.log(doc.id, doc.data());
+                result.push(doc.data())
             });
+            return result;
         });
-
-        // ref.doc(params.id).get().then(querySnapshot => {
-        //     console.log(querySnapshot.data(),'getparambyId')
-        // });
     }
 
     post() {
         //todo
+
+
     }
 
     put() {
         //todo
+
+        return ref.doc().set({ acount: 'user11', password: 'a123456' }).then((res) => {
+            console.log(res)
+            return res
+            console.log('put test');
+
+        })
     }
 
     delete() {
@@ -38,3 +44,6 @@ export class DataBase {
 
 }
 
+
+
+export const dataBase = new DataBase();
