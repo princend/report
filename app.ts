@@ -1,5 +1,5 @@
-import { router } from "./router";
-import { ref, DataBase } from "./database";
+import { router } from "./router/router";
+import { ref, DataBase } from "./database/database";
 const createError = require('http-errors');
 var express = require('express');
 const path = require('path');
