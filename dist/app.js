@@ -1,12 +1,12 @@
 "use strict";
-exports.__esModule = true;
-var router_1 = require("./router");
-var database_1 = require("./database");
-var createError = require('http-errors');
+Object.defineProperty(exports, "__esModule", { value: true });
+const router_1 = require("./router");
+const database_1 = require("./database");
+const createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 var app = express();
 var port = '3000';
 // view engine setup
@@ -22,8 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
-for (var _i = 0, router_2 = router_1.router; _i < router_2.length; _i++) {
-    var route = router_2[_i];
+for (const route of router_1.router) {
     app.use(route.getPrefix(), route.getRouter());
 }
 // catch 404 and forward to error handler
@@ -40,10 +39,10 @@ app.use(function (err, req, res, next) {
     // res.render('error');
     res.json({ message: err.message, error: err });
 });
-app.listen(port, function () {
-    console.log("app listent on port " + port);
+app.listen(port, () => {
+    console.log(`app listent on port ${port}`);
     //資料庫連結
-    var database = new database_1.DataBase();
+    let database = new database_1.DataBase();
     database.get('dbconnect');
 });
 module.exports = app;
