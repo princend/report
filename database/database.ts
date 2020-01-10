@@ -1,17 +1,12 @@
-
-const firebase = require('firebase');
-firebase.initializeApp({
-    projectId: 'report-3012b'
-})
-
-const db = firebase.firestore();
-export const ref = db.collection('user');
-
+import { DbViewModel } from '../view-model/db-view-model';
 
 export class DataBase {
 
-    get(params) {
-        return ref.get().then(querySnapshot => {
+    constructor() {
+    }
+
+    get(params: DbViewModel) {
+        return params.reference.get().then(querySnapshot => {
             let result: Array<any> = [];
             querySnapshot.forEach(doc => {
                 result.push(doc.data())
@@ -22,28 +17,18 @@ export class DataBase {
 
     post() {
         //todo
-
-
     }
 
-    put() {
-        //todo
-
-        return ref.doc().set({ acount: 'user11', password: 'a123456' }).then((res) => {
-            console.log(res)
+    put(params: DbViewModel) {
+        return params.reference.doc().set({ acount: 'user11', password: 'a123456' }).then((res) => {
             return res
-            console.log('put test');
-
         })
     }
 
     delete() {
-        //todo
-
     }
 
 }
 
 
 
-export const dataBase = new DataBase();

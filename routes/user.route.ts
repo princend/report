@@ -11,9 +11,9 @@ class UserRoute extends Route {
     }
 
     protected setRoutes() {
-        this.router.get('/user', this.userController.getMerchandise);
-        this.router.put('/createAccount',this.userController.createAccount)
+        this.router.get('/getAllAccounts', this.userController.getAllAccounts);
+        this.router.put('/createAccount', this.userController.createAccount)
     }
-
 }
+
 export default UserRoute;

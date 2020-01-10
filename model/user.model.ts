@@ -1,15 +1,31 @@
-import { dataBase } from "../database/database";
+import { DataBase } from "../database/database";
+import { formatTool } from '../tool/format-tool';
+import { db } from "../database/db-setting";
+export const dataBase = new DataBase();
 
 export class UserModel {
-    public getMerchandise(param) {
-        let asyncData = dataBase.get('dbconnect');
+
+    constructor() { }
+
+    public getAllAccounts(req) {
+        // let dbRoute = formatTool.removeFirstSlash(req.url)
+        let dbRoute = 'user'
+        let reference = db.collection(dbRoute)
+        let asyncData = dataBase.get({ reference: reference });
         return asyncData;
     }
 
-
-    public createAccount(param) {
-        let asyncData = dataBase.put();
+    public createAccount(req) {
+        // let dbRoute = formatTool.removeFirstSlash(req.url)
+        let dbRoute = 'user'
+        let reference = db.collection(dbRoute)
+        let asyncData = dataBase.put({ reference: reference });
         return asyncData;
+    }
+
+    login(param) {
+
     }
 }
 
+export const userModel = new UserModel();
