@@ -5,13 +5,10 @@ export class DataBase {
     constructor() {
     }
 
-    get(params: DbViewModel) {
-        return params.reference.get().then(querySnapshot => {
-            let result: Array<any> = [];
-            querySnapshot.forEach(doc => {
-                result.push(doc.data())
-            });
-            return result;
+    get(params: DbViewModel, formatResultFn?: Function) {
+        return params.reference.get().then(query => {
+            if (formatResultFn) { query = formatResultFn(query.data()) }
+            return query;
         });
     }
 
@@ -20,7 +17,7 @@ export class DataBase {
     }
 
     put(params: DbViewModel) {
-        return params.reference.doc().set({ acount: 'user11', password: 'a123456' }).then((res) => {
+        return params.reference.set(params.setParams, { merge: true }).then((res) => {
             return res
         })
     }
