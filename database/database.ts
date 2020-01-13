@@ -16,8 +16,8 @@ export class DataBase {
         //todo
     }
 
-    put(params: DbViewModel) {
-        return params.reference.set(params.setParams, { merge: true }).then((res) => {
+    put(params: DbViewModel, merge = true) {
+        return params.reference.set(params.setParams, { merge: merge }).then((res) => {
             return res
         })
     }

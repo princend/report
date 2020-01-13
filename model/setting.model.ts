@@ -1,5 +1,4 @@
 import { dataBase } from "../database/database";
-import { formatTool } from '../tool/format-tool';
 import { db } from "../database/db-setting";
 
 export class SettingModel {
@@ -11,9 +10,7 @@ export class SettingModel {
      * @param req 
      */
     public getItemSetting(req) {
-        // let dbRoute = formatTool.removeFirstSlash(req.url)
-        let dbRoute = 'items'
-        let reference = db.collection(dbRoute).doc('item1');
+        let reference = db.collection('items').doc('item1');
         let formatResultFn = (result) => { return result = result.items }
         let asyncData = dataBase.get({ reference: reference }, formatResultFn);
         return asyncData;
@@ -24,9 +21,7 @@ export class SettingModel {
      * @param req 
      */
     public setItemSetting(req) {
-        // let dbRoute = formatTool.removeFirstSlash(req.url)
-        let dbRoute = 'items'
-        let reference = db.collection(dbRoute).doc('item1');
+        let reference = db.collection('items').doc('item1');
         let asyncData = dataBase.put({ reference: reference, setParams: req.body });
         return asyncData;
     }
@@ -47,7 +42,6 @@ export class SettingModel {
      * @param req 
      */
     public setCompanySetting(req) {
-        // let dbRoute = formatTool.removeFirstSlash(req.url)
         let dbRoute = 'setting'
         let reference = db.collection(dbRoute)
         let asyncData = dataBase.put({ reference: reference });
