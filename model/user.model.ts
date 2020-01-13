@@ -1,7 +1,7 @@
-import { DataBase } from "../database/database";
+import { dataBase } from "../database/database";
 import { formatTool } from '../tool/format-tool';
 import { db } from "../database/db-setting";
-export const dataBase = new DataBase();
+
 
 export class UserModel {
 

@@ -30,5 +30,4 @@ export class DataBase {
 
 }
 
-
-
+export const dataBase = new DataBase();
