@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { settingModel } from "../model/setting.model";
+import { ItemsSetting, CompanySetting } from "../view-model/setting-view-model";
 
 
 export class SettingController {
@@ -11,7 +12,7 @@ export class SettingController {
      */
     getItemSetting(req: Request, res: Response) {
         let result = settingModel.getItemSetting(req)
-        result.then(result => res.send(result))
+        result.then((result: ItemsSetting) => res.send(result))
     }
 
     /**
@@ -32,7 +33,7 @@ export class SettingController {
      */
     getCompanySetting(req: Request, res: Response) {
         let result = settingModel.getCompanySetting(req)
-        result.then(result => res.send(result))
+        result.then((result: CompanySetting) => res.send(result))
     }
 
     /**
@@ -52,7 +53,7 @@ export class SettingController {
      */
     getItemsByCompanySetting(req: Request, res: Response) {
         let result = settingModel.getItemsByCompanySetting(req)
-        result.then(result => res.send(result))
+        result.then((result: ItemsSetting) => res.send(result))
     }
 
     /**

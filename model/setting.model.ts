@@ -1,5 +1,6 @@
 import { dataBase } from "../database/database";
 import { db } from "../database/db-setting";
+import { ItemsByCompanyReq } from "../view-model/setting-view-model";
 
 export class SettingModel {
 
@@ -10,7 +11,7 @@ export class SettingModel {
      * @param req 
      */
     public getItemSetting(req) {
-        let reference = db.collection('items').doc('item1');
+        let reference = db.collection('items').doc('item');
         let formatResultFn = (result) => { return result = result.items }
         let asyncData = dataBase.get({ reference: reference }, formatResultFn);
         return asyncData;
@@ -21,7 +22,7 @@ export class SettingModel {
      * @param req 
      */
     public setItemSetting(req) {
-        let reference = db.collection('items').doc('item1');
+        let reference = db.collection('items').doc('item');
         let asyncData = dataBase.put({ reference: reference, setParams: req.body });
         return asyncData;
     }
@@ -31,9 +32,9 @@ export class SettingModel {
      * @param req 
      */
     public getCompanySetting(req) {
-        let dbRoute = 'setting'
-        let reference = db.collection(dbRoute)
-        let asyncData = dataBase.get({ reference: reference });
+        let reference = db.collection('companies').doc('company');
+        let formatResultFn = (result) => { return result = result.companies }
+        let asyncData = dataBase.get({ reference: reference }, formatResultFn);
         return asyncData;
     }
 
@@ -42,9 +43,8 @@ export class SettingModel {
      * @param req 
      */
     public setCompanySetting(req) {
-        let dbRoute = 'setting'
-        let reference = db.collection(dbRoute)
-        let asyncData = dataBase.put({ reference: reference });
+        let reference = db.collection('companies').doc('company');
+        let asyncData = dataBase.put({ reference: reference, setParams: req.body });
         return asyncData;
     }
 
@@ -53,9 +53,10 @@ export class SettingModel {
      * @param req 
      */
     public getItemsByCompanySetting(req) {
-        let dbRoute = 'setting'
-        let reference = db.collection(dbRoute)
-        let asyncData = dataBase.get({ reference: reference });
+        let reqParam: ItemsByCompanyReq = { id: req.query.id }
+        let reference = db.collection('itemsByCompany').doc(reqParam.id)
+        let formatResultFn = (result) => { return result = result && result.items ? result.items : [] }
+        let asyncData = dataBase.get({ reference: reference }, formatResultFn);
         return asyncData;
     }
 
@@ -64,9 +65,9 @@ export class SettingModel {
      * @param req 
      */
     public setItemsByCompanySetting(req) {
-        let dbRoute = 'setting'
-        let reference = db.collection(dbRoute)
-        let asyncData = dataBase.put({ reference: reference });
+        let reqParam: ItemsByCompanyReq = req.body
+        let reference = db.collection('itemsByCompany').doc(reqParam.id)
+        let asyncData = dataBase.put({ reference: reference, setParams: reqParam });
         return asyncData;
     }
 
