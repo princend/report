@@ -21,9 +21,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build:live",
+    "localStart": "npm run build:live",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./app.ts ",
-    "build": "tsc && node ./dist/app.js",
+    "start": "tsc && node ./dist/app.js",
     "dev": "ts-node ./app.ts"
   },
   "keywords": [],
