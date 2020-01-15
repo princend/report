@@ -29,8 +29,19 @@ app.use(function (err, req, res, next) {
     res.json({ message: err.message, error: err });
 });
 
-app.listen(port, () => {
-    console.log(`app listent on port ${port}`);
-})
+// app.listen(port, () => {
+//     console.log(`app listent on port ${port}`);
+// })
+
+// 因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
+const server = app.listen(process.env.PORT || port, function () {
+    let port = server.address().port;
+    console.log("App now running on port", port);
+});
+
+
+app.get('/', function (req, res) {
+    res.send('GET request to the homepage');
+});
 
 module.exports = app;

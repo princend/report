@@ -70,8 +70,6 @@ export class SettingModel {
         let asyncData = dataBase.put({ reference: reference, setParams: reqParam });
         return asyncData;
     }
-
-
 }
 
 export const settingModel = new SettingModel();
