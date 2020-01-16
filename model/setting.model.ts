@@ -70,6 +70,17 @@ export class SettingModel {
         let asyncData = dataBase.put({ reference: reference, setParams: reqParam });
         return asyncData;
     }
+
+    /**
+     * 取得所有選單
+     * @param req 
+     */
+    public getMenus(req) {
+        let reference = db.collection('menus').doc('menu');
+        let formatResultFn = (result) => { return result = result.menus }
+        let asyncData = dataBase.get({ reference: reference }, formatResultFn);
+        return asyncData;
+    }
 }
 
 export const settingModel = new SettingModel();

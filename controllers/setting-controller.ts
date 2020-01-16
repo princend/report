@@ -65,6 +65,16 @@ export class SettingController {
         let result = settingModel.setItemsByCompanySetting(req)
         result.then(result => res.send(result))
     }
+
+    /**
+ * 取得所有選單
+ * @param req 
+ * @param res 
+ */
+    getMenus(req: Request, res: Response) {
+        let result = settingModel.getMenus(req)
+        result.then((result: ItemsSetting) => res.send(result))
+    }
 }
 
 
